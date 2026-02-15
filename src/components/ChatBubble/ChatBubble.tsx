@@ -23,7 +23,7 @@ export default function ChatBubble({ text, isTyping, character }: ChatBubbleProp
                             <span className={`h-1 w-1 rounded-full bg-white animate-typing-dot`}></span>
                         </div>
                     ) : (
-                        <p className="text-wrap whitespace-pre-wrap break-words text-white text-sm">{text}</p>
+                        <p className="text-wrap whitespace-pre-wrap break-words text-white text-sm w-full">{text}</p>
                     )}
                 </div>
             </div>
