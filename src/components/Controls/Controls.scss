@@ -1,0 +1,29 @@
+.controls-wrapper {
+    display: grid;
+    grid-template-rows: 1fr 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.controls-wrapper.is-editing {
+    grid-template-rows: 0fr 1fr; /* Buttons shrink, Editor expands */
+}
+
+.button-stack {
+    min-height: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.is-editing .button-stack {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.editing-script-container {
+    min-height: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.is-editing .editing-script-container {
+    opacity: 1;
+    visibility: visible;
+}
