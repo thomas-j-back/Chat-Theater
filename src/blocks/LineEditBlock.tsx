@@ -18,14 +18,6 @@ export default function LineEditBlock({ line, updateLine, onDelete }: LineEditBl
         setMessage(line.text);
     }, [line.text]);
 
-    /**
-     * 
-     * @param text - The text to set the message to
-     */
-    const setLineText = (text: string) => {
-        setMessage(text);
-
-    }
 
     /**
    * Handle the save of the message on closeout

@@ -6,7 +6,7 @@ communicate, send texts to each other
 
 ## How to run
 
-This is a classic and simple vite/react app, just do `npm start`
+This is a classic and simple vite/react app, just do `npm run dev`
 
 ## Features
 
