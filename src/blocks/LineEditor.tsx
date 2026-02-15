@@ -18,6 +18,10 @@ export default function LineEditor() {
         setScript({ ...script, title: title });
     }
 
+    const deleteLine = (id: string) => {
+        setScript({ ...script, lines: script.lines.filter((l) => l.id !== id) });
+    }
+
 
     return (
         <div className="font-courier flex flex-row gap-2 sm:p-2 md:p-4 lg:p-8 p-4 h-full bg-white rounded-sm w-full h-full max-h-[500px] shadow-lg overflow-hidden">
@@ -25,7 +29,7 @@ export default function LineEditor() {
                 <ClickToEdit value={script.title} type="string" onSave={(value: string | number) => updateTitle(value as string)} />
 
                 {script.lines.map((line) => (
-                    <LineEditBlock key={line.id} line={line} updateLine={updateLine} />
+                    <LineEditBlock key={line.id} line={line} updateLine={updateLine} onDelete={deleteLine} />
                 ))}
                 {script.lines.length === 0 && <p className="text-gray-500 text-sm text-center">[ The stage is empty. ]</p>}
             </div>

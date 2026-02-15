@@ -21,7 +21,7 @@ export default function ScriptEditor({ onClose }: { onClose: () => void }) {
         <>
             <LineCreate key={isCreatingLine ? "line-open" : "line-closed"} onClose={() => setIsCreatingLine(false)} isOpen={isCreatingLine} />
             <CharacterCreate key={isCreatingCharacter ? "open" : "closed"} onClose={() => setIsCreatingCharacter(false)} isOpen={isCreatingCharacter} />
-            <div className="bg-gray-800 rounded-lg w-full h-full ">
+            <div className="bg-gray-800 rounded-lg w-full h-[80vh] ">
                 <div className="px-2 py-1 height-50 flex flex-row justify-end">
                     <p className="text-white hover:cursor-pointer hover:opacity-50" onClick={onClose}>
                         <X size={24} fill="currentColor" />

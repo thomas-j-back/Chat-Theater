@@ -14,6 +14,7 @@ export default function ClickToEdit({ label, value, type = "string", onSave }: C
         setCurrentValue(value);
     }, [value]);
 
+
     const submitSave = () => {
         setIsEditing(false);
         // Only trigger update if the value actually changed
