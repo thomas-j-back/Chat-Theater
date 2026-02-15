@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 interface ClickToEditProps {
     label?: string;
     value: string | number;
@@ -9,10 +9,25 @@ interface ClickToEditProps {
 export default function ClickToEdit({ label, value, type = "string", onSave }: ClickToEditProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [currentValue, setCurrentValue] = useState(value);
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
         setCurrentValue(value);
-    }, [value]);
+
+        if (isEditing) {
+            adjustHeight();
+        }
+    }, [value, isEditing]);
+
+    const adjustHeight = () => {
+        const textarea = textAreaRef.current;
+        if (textarea) {
+            // Reset height to shrink if text was deleted
+            textarea.style.height = 'auto';
+            // Set height to the scroll height (the actual content size)
+            textarea.style.height = `${textarea.scrollHeight}px`;
+        }
+    };
 
 
     const submitSave = () => {
@@ -23,10 +38,8 @@ export default function ClickToEdit({ label, value, type = "string", onSave }: C
         }
     };
 
-
-
     return (
-        <div className="w-full line-height-1">
+        <div className="w-full line-height-1 flex flex-col items-center justify-center">
             {label && <p className="text-center uppercase text-xs font-bold text-gray-500">{label}</p>}
             {isEditing ? (
                 type === 'number' ? <input autoFocus type={"number"} className="text-sm text-wrap w-full rounded-sm p-2" value={currentValue} onKeyDown={(e) => {
@@ -35,8 +48,8 @@ export default function ClickToEdit({ label, value, type = "string", onSave }: C
                         setCurrentValue(value); // Revert
                         setIsEditing(false);
                     }
-                }} onBlur={submitSave} onChange={(e) => { setCurrentValue(e.target.value); }} /> : (
-                    <textarea autoFocus rows={2} className="text-sm text-center text-gray-500 text-wrap w-full rounded-sm p-2" value={currentValue} onKeyDown={(e) => {
+                }} onBlur={submitSave} onChange={(e) => { setCurrentValue(e.target.value); adjustHeight(); }} /> : (
+                    <textarea autoFocus style={{ minHeight: '1.25rem' }} ref={textAreaRef} className="bg-gray-200 outline-none text-sm text-center text-gray-500 text-wrap w-full rounded-sm p-2" value={currentValue} onKeyDown={(e) => {
                         if (e.key === 'Enter') submitSave();
                         if (e.key === 'Escape') {
                             setCurrentValue(value); // Revert
@@ -44,7 +57,7 @@ export default function ClickToEdit({ label, value, type = "string", onSave }: C
                         }
                     }} onBlur={submitSave} onChange={(e) => { setCurrentValue(e.target.value); }} />)
             ) : (
-                <p className="text-sm text-center text-gray-500 rounded-sm hover:opacity-50 hover:cursor-pointer p-2 text-wrap whitespace-pre-wrap break-words" onDoubleClick={() => setIsEditing(true)}>{value}</p>
+                <span className="max-w-full text-sm text-center hover:cursor-text text-gray-500 rounded-sm hover:opacity-50 hover:cursor-pointer p-2 text-wrap whitespace-pre-wrap break-words" onDoubleClick={() => setIsEditing(true)}>{value}</span>
             )}
         </div>
     )

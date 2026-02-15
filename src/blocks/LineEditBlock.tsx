@@ -33,7 +33,7 @@ export default function LineEditBlock({ line, updateLine, onDelete }: LineEditBl
 
 
     return (
-        <div className={`hover:border-gray-100 transition-colors group relative p-2 rounded-md text-white flex flex-row justify-between nowrap sm:flex-wrap`}>
+        <div className={`hover:border hover:cursor-pointer hover:border-gray-100 hover:bg-gray-100 transition-colors group relative p-2 rounded-md text-white flex flex-row justify-between nowrap sm:flex-wrap`}>
             <div className="absolute -left-12 top-1/2 -translate-y-1/2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button
                     onClick={() => onDelete(line.id)}

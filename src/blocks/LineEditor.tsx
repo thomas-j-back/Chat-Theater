@@ -25,7 +25,7 @@ export default function LineEditor() {
 
     return (
         <div className="font-courier flex flex-row gap-2 sm:p-2 md:p-4 lg:p-8 p-4 h-full bg-white rounded-sm w-full h-full max-h-[500px] shadow-lg overflow-hidden">
-            <div className="flex flex-col gap-4 flex-1 min-w-0 h-full overflow-y-auto scrollbar-thin">
+            <div className="flex flex-col flex-1 min-w-0 h-full overflow-y-auto scrollbar-thin">
                 <ClickToEdit value={script.title} type="string" onSave={(value: string | number) => updateTitle(value as string)} />
 
                 {script.lines.map((line) => (
