@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@/blocks/Button";
 import LineCreate from "@/blocks/LineCreate";
 import LineEditor from "@/blocks/LineEditor";
 import CharacterCreate from "@/blocks/CharacterCreate";
+import { X } from "lucide-react";
 
 export default function ScriptEditor({ onClose }: { onClose: () => void }) {
     const [isCreatingLine, setIsCreatingLine] = useState(false);
@@ -22,7 +23,9 @@ export default function ScriptEditor({ onClose }: { onClose: () => void }) {
             <CharacterCreate key={isCreatingCharacter ? "open" : "closed"} onClose={() => setIsCreatingCharacter(false)} isOpen={isCreatingCharacter} />
             <div className="bg-gray-800 rounded-lg w-full h-full ">
                 <div className="px-2 py-1 height-50 flex flex-row justify-end">
-                    <p className="text-white hover:cursor-pointer" onClick={onClose}>X</p>
+                    <p className="text-white hover:cursor-pointer hover:opacity-50" onClick={onClose}>
+                        <X size={24} fill="currentColor" />
+                    </p>
                 </div>
 
                 <div className="sm:p-4 md:p-8 lg:p-12 p-4 pt-0 md:pt-0 lg:pt-0 h-full">
