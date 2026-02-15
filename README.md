@@ -1,4 +1,4 @@
-# ChatStage
+# Chat Theater
 
 While working on demos that required texting examples, I realized there's no
 quick tool to simulate running through a script of different actors that
