@@ -24,7 +24,7 @@ export default function LineEditor() {
 
 
     return (
-        <div className="font-courier flex flex-row gap-2 sm:p-2 md:p-4 lg:p-8 p-4 h-full bg-white rounded-sm w-full h-full max-h-[500px] shadow-lg overflow-hidden">
+        <div className="font-courier flex flex-col lg:flex-row gap-2 sm:p-2 md:p-4 lg:p-8 p-4 h-full bg-white rounded-sm w-full h-full max-h-[500px] shadow-lg overflow-hidden">
             <div className="flex flex-col flex-1 min-w-0 h-full overflow-y-auto scrollbar-thin">
                 <ClickToEdit value={script.title} type="string" onSave={(value: string | number) => updateTitle(value as string)} />
 
@@ -33,7 +33,7 @@ export default function LineEditor() {
                 ))}
                 {script.lines.length === 0 && <p className="text-gray-500 text-sm text-center">[ The stage is empty. ]</p>}
             </div>
-            <div className="text-gray-500 flex flex-col rounded-lg  flex-1">
+            <div className="text-gray-500 flex flex-col  border-l-2 border-gray-200 pl-4">
                 <p className="text-center">Cast List:</p>
                 {characters.map((character) => (
                     <p className="text-center" key={character.id}>{character.name}</p>

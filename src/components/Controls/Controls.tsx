@@ -8,8 +8,7 @@ import Button from '@/blocks/Button';
 import { Play, Square } from 'lucide-react';
 
 export default function Controls() {
-    const { playScript, resetScript, isPlaying } = useContext(ScriptContext) as ScriptContextType;
-    const [isEditingScript, setIsEditingScript] = useState(false);
+    const { playScript, resetScript, isPlaying, isEditingScript, setIsEditingScript } = useContext(ScriptContext) as ScriptContextType;
 
     return (
 
@@ -19,7 +18,8 @@ export default function Controls() {
             className={`bg-white border rounded-xl overflow-hidden shadow-sm ${isEditingScript ? 'flex-1' : 'w-64'
                 }`}
         >
-            <div className="p-4">
+
+            <div className="p-4 font-courier">
                 <AnimatePresence mode="wait">
                     {!isEditingScript ? (
                         <motion.div
@@ -30,6 +30,7 @@ export default function Controls() {
                             transition={{ duration: 0.2 }}
                             className="flex flex-col gap-2"
                         >
+
                             <Button
                                 onClick={() => setIsEditingScript(true)}
                             >
@@ -56,5 +57,6 @@ export default function Controls() {
                 </AnimatePresence>
             </div>
         </motion.div>
+
     )
 }

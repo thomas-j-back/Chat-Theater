@@ -21,19 +21,19 @@ export default function ScriptEditor({ onClose }: { onClose: () => void }) {
         <>
             <LineCreate key={isCreatingLine ? "line-open" : "line-closed"} onClose={() => setIsCreatingLine(false)} isOpen={isCreatingLine} />
             <CharacterCreate key={isCreatingCharacter ? "open" : "closed"} onClose={() => setIsCreatingCharacter(false)} isOpen={isCreatingCharacter} />
-            <div className="bg-gray-800 rounded-lg w-full h-[80vh] ">
+            <div className="bg-white rounded-lg w-full h-[80vh]">
                 <div className="px-2 py-1 height-50 flex flex-row justify-end">
-                    <p className="text-white hover:cursor-pointer hover:opacity-50" onClick={onClose}>
+                    <p className="text-gray-800 hover:cursor-pointer hover:opacity-50" onClick={onClose}>
                         <X size={24} fill="currentColor" />
                     </p>
                 </div>
 
                 <div className="sm:p-4 md:p-8 lg:p-12 p-4 pt-0 md:pt-0 lg:pt-0 h-full">
                     <div className="flex flex-col gap-4 h-full">
-                        <h2 className="text-white text-2xl">Script Editor</h2>
+                        <h2 className="text-gray-800 text-2xl text-center">Script Editor</h2>
                         <LineEditor />
-                        <div className="flex flex-row gap-4 justify-between">
-                            <div className="flex flex-row gap-4">
+                        <div className="flex gap-4 md:flex-row flex-col justify-between">
+                            <div className="flex md:flex-row flex-col gap-4 md:flex-row sm:flex-col ">
                                 <Button onClick={createCharacter}>Add Character</Button>
                                 <Button onClick={createLine}>Add Line</Button>
                             </div>

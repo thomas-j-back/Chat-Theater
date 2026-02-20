@@ -17,9 +17,12 @@ export function ScriptProvider({ children }: { children: React.ReactNode }) {
     //Initialize empty script when first renedered, or pull from local storage if available
     const savedScript = localStorage.getItem('script');
     const savedCharacters = localStorage.getItem('characters');
+
     const [script, setScript] = useState<Script>(savedScript ? JSON.parse(savedScript) : { title: 'untitled', lines: [] });
     const [characters, setCharacters] = useState<Character[]>(savedCharacters ? JSON.parse(savedCharacters) : [INIITAL_ME_CHARACTER]);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isEditingScript, setIsEditingScript] = useState(false);
+
     const [visibleLines, setVisibleLines] = useState<VisibleLine[]>([]);
 
     const setCharactersGlobal = (characters: Character[]) => {
@@ -32,12 +35,10 @@ export function ScriptProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem('script', JSON.stringify(script));
     }
 
-
     const resetScript = () => {
         setVisibleLines([]);
         setIsPlaying(false);
     }
-
 
     /**
      * Play script function, handles setting the variables that PhoneScreen will use to rnder
@@ -71,11 +72,11 @@ export function ScriptProvider({ children }: { children: React.ReactNode }) {
         setIsPlaying(false);
     }
 
-
-
-
     return (
-        <ScriptContext.Provider value={{ script, setScript: setScriptGlobal, characters, setCharacters: setCharactersGlobal, visibleLines, isPlaying, playScript, resetScript }}>
+        <ScriptContext.Provider value={{
+            script,
+            setScript: setScriptGlobal, characters, setCharacters: setCharactersGlobal, visibleLines, isPlaying, isEditingScript, setIsEditingScript, playScript, resetScript
+        }}>
             {children}
         </ScriptContext.Provider>
     )

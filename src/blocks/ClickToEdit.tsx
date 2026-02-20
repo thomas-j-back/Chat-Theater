@@ -13,7 +13,6 @@ export default function ClickToEdit({ label, value, type = "string", onSave }: C
 
     useEffect(() => {
         setCurrentValue(value);
-
         if (isEditing) {
             adjustHeight();
         }
@@ -22,17 +21,14 @@ export default function ClickToEdit({ label, value, type = "string", onSave }: C
     const adjustHeight = () => {
         const textarea = textAreaRef.current;
         if (textarea) {
-            // Reset height to shrink if text was deleted
             textarea.style.height = 'auto';
-            // Set height to the scroll height (the actual content size)
             textarea.style.height = `${textarea.scrollHeight}px`;
         }
     };
 
-
     const submitSave = () => {
         setIsEditing(false);
-        // Only trigger update if the value actually changed
+        // Only trigger when real change
         if (currentValue !== value) {
             onSave(type === "number" ? Number(currentValue) : currentValue);
         }
@@ -45,14 +41,14 @@ export default function ClickToEdit({ label, value, type = "string", onSave }: C
                 type === 'number' ? <input autoFocus type={"number"} className="text-sm text-wrap w-full rounded-sm p-2" value={currentValue} onKeyDown={(e) => {
                     if (e.key === 'Enter') submitSave();
                     if (e.key === 'Escape') {
-                        setCurrentValue(value); // Revert
+                        setCurrentValue(value);
                         setIsEditing(false);
                     }
                 }} onBlur={submitSave} onChange={(e) => { setCurrentValue(e.target.value); adjustHeight(); }} /> : (
-                    <textarea autoFocus style={{ minHeight: '1.25rem' }} ref={textAreaRef} className="bg-gray-200 outline-none text-sm text-center text-gray-500 text-wrap w-full rounded-sm p-2" value={currentValue} onKeyDown={(e) => {
+                    <textarea autoFocus style={{ minHeight: '1.25rem' }} ref={textAreaRef} className="border-gray-200 border outline-none text-sm text-center text-gray-500 text-wrap w-full rounded-sm p-2" value={currentValue} onKeyDown={(e) => {
                         if (e.key === 'Enter') submitSave();
                         if (e.key === 'Escape') {
-                            setCurrentValue(value); // Revert
+                            setCurrentValue(value);
                             setIsEditing(false);
                         }
                     }} onBlur={submitSave} onChange={(e) => { setCurrentValue(e.target.value); }} />)

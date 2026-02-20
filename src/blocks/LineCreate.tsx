@@ -19,7 +19,6 @@ export default function LineCreate({ onClose, isOpen }: { onClose: () => void, i
         typingBubbleDuration: 0
     });
 
-
     const updateLine = (line: Line) => {
         setLine(line);
     }
@@ -31,7 +30,6 @@ export default function LineCreate({ onClose, isOpen }: { onClose: () => void, i
         setScript({ ...script, lines: [...script.lines, line] });
         onClose();
     }
-    //Can I make this a modal 
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Add Line" className="flex flex-col gap-4">
@@ -51,7 +49,6 @@ export default function LineCreate({ onClose, isOpen }: { onClose: () => void, i
                 <input className="border border-gray-300 p-2 rounded-md" type="number" placeholder="Typing Bubble Duration" value={line?.typingBubbleDuration || 0} onChange={(e) => updateLine({ ...line, typingBubbleDuration: parseInt(e.target.value) })} />
                 <Button disabled={!selectedCharacter || !line.text.trim()} onClick={() => addLine()}>Add Line</Button>
             </div>
-
         </Modal>
     )
 
