@@ -18,15 +18,15 @@ function App() {
         sm:relative sm:translate-x-0 sm:shadow-none bg-transparent
         rounded
         transition-transform duration-300 ease-in-out block -translate-x-full
-        ${isEditingScript ? 'md:flex-1 flex-grow' : ''}
+        ${isEditingScript ? 'md:flex-none lg:flex-initial  w-full' : ''}
       `}>
         <Controls />
       </aside>
 
       {/* The Phone Stage — off screen when editing at all breakpoints including md */}
       <main className={`
-          transition-all duration-700 ease-in-out flex-shrink-0
-          ${isEditingScript ? 'translate-x-[150%] opacity-0 scale-75 pointer-events-none display-none md:block' : 'translate-x-0 opacity-100 scale-100 pointer-events-auto'}
+          transition-all duration-700 ease-in-out flex-shrink-0 md:translate-x-0 lg:opacity-100 lg:scale-100 lg:pointer-events-auto
+          ${isEditingScript ? 'sm:translate-x-[150%] md:opacity-0 md:scale-75 md:pointer-events-none md:display-none lg:block' : 'translate-x-0 opacity-100 scale-100 pointer-events-auto'}
       `}>
         <PhoneStage />
       </main>
