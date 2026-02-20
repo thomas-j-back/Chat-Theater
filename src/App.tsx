@@ -18,7 +18,8 @@ function App() {
         sm:relative sm:translate-x-0 sm:shadow-none bg-transparent
         rounded
         transition-transform duration-300 ease-in-out block -translate-x-full
-        ${isEditingScript ? 'md:flex-none lg:flex-initial  w-full' : ''}
+        
+        ${isEditingScript ? 'md:flex-none lg:flex-initial lg:flex-shrink-1 w-full' : ''}
       `}>
         <Controls />
       </aside>

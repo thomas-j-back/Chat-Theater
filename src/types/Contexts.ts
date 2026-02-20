@@ -18,3 +18,8 @@ export type ScriptContextType = {
     playScript: () => Promise<void>;
     resetScript: () => void;
 }
+
+export type UIContextType = {
+    isSidebarOpen: boolean;
+    setIsSidebarOpen: (isSidebarOpen: boolean) => void;
+}

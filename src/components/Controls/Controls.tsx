@@ -15,7 +15,7 @@ export default function Controls() {
         <motion.div
             layout
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className={`bg-white border rounded-xl overflow-hidden shadow-sm ${isEditingScript ? 'flex-1' : 'w-64'
+            className={`bg-white border rounded-xl overflow-hidden  shadow-sm ${isEditingScript ? 'flex-1' : 'w-64'
                 }`}
         >
 
